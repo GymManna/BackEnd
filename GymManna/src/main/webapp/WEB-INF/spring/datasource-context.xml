@@ -29,9 +29,7 @@
 			value="classpath:mybatis-config.xml" />
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:mappers/MemberMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  -->
-				<value>classpath:mappers/BoardMapper.xml</value>
-				<value>classpath:mappers/CommentMapper.xml</value>  
+				<value>classpath:mappers/MemberMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  --> 
 			</list>
 		</property>
 	</bean>
