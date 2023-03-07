@@ -6,13 +6,25 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/*-context.xml</param-value>
+		<!--/WEB-INF/spring/*-context.xml 은 * 뒤에 나오는 -context.xml 생긴 파일은 다 불러들이라는 의미다.  -->
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+     <!-- Log4j2 설정 -->
+      <context-param>
+          <param-name>log4jConfiguration</param-name>
+          <param-value>classpath:/log4j2.xml</param-value>
+      </context-param>
+        
+      <listener>
+          <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener
+          </listener-class>
+      </listener>
 
 	<!-- Processes application requests -->
 	<servlet>
@@ -29,5 +41,21 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>
