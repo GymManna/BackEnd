@@ -1,5 +1,8 @@
 package com.mycompany.mygym.member.dao;
 
-public class MemberDao {
+import org.springframework.stereotype.Repository;
+
+@Repository("memberDao")
+public class MemberDao implements MemberDaoImpl{
 
 }

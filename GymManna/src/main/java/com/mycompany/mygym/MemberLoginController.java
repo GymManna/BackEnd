@@ -14,7 +14,7 @@ public class MemberLoginController {
 	@Autowired
 	private MemberService service;
 	
-	@PostMapping(value="Login")
+	@PostMapping(value="login")
 	public String Login() {
 		
 		
