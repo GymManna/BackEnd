@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	 <h1>로그인하세요!</h1>
+	<form action="/mygym/user/login" method="GET">
+	ID: <input type="text" name="userId">
+		<br><br>
+		PW: <input type="password" name="userPw">
+		<br><br>
+		<input type="submit" value="로그인">
+	</form>
+		<br><br>
+		<form action="/mygym/user/registerjsp" method="GET">
+   	 <input type="submit" value="회원가입">
+    </form>
+    <br>
+    <button id="login-kakao-btn"
+                class="w-100 btn btn-secondary btn-lg"
+                onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=카카오devloper에서 받은 RestApiKey&redirect_uri=서버 IP주소/user/kakao/callback&response_type=code'">
+            카카오 로그인
+</button>
+    
+	
+</body>
+</html>
