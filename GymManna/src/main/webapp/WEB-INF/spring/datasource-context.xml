@@ -19,6 +19,10 @@
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}" />
 	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	  <constructor-arg ref="dataSource" />
+	</bean>
 
 	<!-- sqlSessionFactory를 Bean으로 등록합니다. SqlSessionFactory는 SqlSession을 만들기 
 		위한 정보들을 가지고 있습니다. mapper를 생성하면 list에 추가해야 합니다. -->
@@ -29,6 +33,9 @@
 			value="classpath:mybatis-config.xml" />
 		<property name="mapperLocations">
 			<list>
+				<value>classpath:mappers/GatheringMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  --> 
+				<value>classpath:mappers/CenterMapper.xml</value>
+				<value>classpath:mappers/GCommentMapper.xml</value>
 				<value>classpath:mappers/ArticlePhotoMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  --> 
 				<value>classpath:mappers/UserMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  --> 
 			</list>
