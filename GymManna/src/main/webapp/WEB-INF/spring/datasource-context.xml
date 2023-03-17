@@ -29,11 +29,8 @@
 			value="classpath:mybatis-config.xml" />
 		<property name="mapperLocations">
 			<list>
-<<<<<<< HEAD
 				<value>classpath:mappers/ArticlePhotoMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  --> 
-=======
 				<value>classpath:mappers/UserMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  --> 
->>>>>>> branch 'feat/#3' of https://github.com/kosa-saltlux-5/BackEnd.git
 			</list>
 		</property>
 	</bean>
