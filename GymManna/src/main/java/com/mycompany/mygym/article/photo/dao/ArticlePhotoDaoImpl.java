@@ -32,7 +32,7 @@ public class ArticlePhotoDaoImpl implements ArticlePhotoDao{
 
 	@Override
 	public int createImage(ArticleImage articleImage) {
-		return session.insert("com.mycompany.mygym.article.photo.createImage", articleImage);
+		return session.insert("com.mycompany.mygym.article.image.createImage", articleImage);
 		
 	}
 }

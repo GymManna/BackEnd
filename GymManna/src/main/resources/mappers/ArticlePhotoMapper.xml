@@ -4,45 +4,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mycompany.mygym.article.photo">
+<mapper namespace="com.mycompany.mygym.article.image">
 	<resultMap id="articlePhotoResultMap"
 		type="com.mycompany.mygym.article.photo.vo.ArticlePhoto">
 		<result property="articlePnum" column="article_pnum"
 			jdbcType="BIGINT" javaType="long" />
-		<result property="articlePtitle" column="article_ptitle"
+		<result property="articleImgurl" column="article_imgurl"
 			jdbcType="VARCHAR" javaType="String" />
-		<result property="articlePcontent" column="article_pcontent"
-			jdbcType="VARCHAR" javaType="String" />
-		<result property="articlePdate" column="article_pdate"
-			jdbcType="DATE" javaType="java.sql.Date" />
-		<result property="userId" column="user_id" jdbcType="VARCHAR"
-			javaType="String" />
 	</resultMap>
 
-	<select id="selectArticle" resultMap="articlePhotoResultMap">
-		<![CDATA[
-			SELECT article_pnum, article_ptitle, article_pcontent, article_pdate, user_id
-			FROM article_photo
-		]]>
-	</select>
-
-	<insert id="createPost" parameterType="ArticlePhoto">
-       <![CDATA[   
-         INSERT INTO article_photo (article_ptitle, article_pcontent, user_id)
-         VALUES (#{articlePtitle}, #{articlePcontent}, #{userId});      
-      ]]>
-	</insert>
-	
-	<select id="selectNowCreatedArticle" resultType="String">
-		<![CDATA[
-			SELECT LAST_INSERT_ID();
-		]]>
-	</select>
-	
 	<insert id="createImage" parameterType="ArticlePhoto">
        <![CDATA[   
          INSERT INTO imgtbl (article_pnum, article_imgurl)
-         VALUES (#{articlePnum}, #{articleImaurl});      
+         VALUES (#{articlePnum}, #{articleImgurl});      
       ]]>
 	</insert>
 </mapper>
