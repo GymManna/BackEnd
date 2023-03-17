@@ -150,3 +150,9 @@ $RECYCLE.BIN/
 *.lnk
 
 MANIFEST.MF
+
+database.properties
+
+log4j2.xml
+
+pom.properties
