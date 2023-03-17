@@ -25,7 +25,7 @@
 	
 	<!-- 로그인 -->
 	<select id="login" resultMap="bb" parameterType="com.mycompany.mygym.user.vo.User">
-		SELECT user_id, user_name, user_password, user_nickname
+		SELECT user_id, user_name, user_password, user_nickname, user_phone
 		FROM user
 		WHERE user_id = #{userId}
 	</select>
@@ -35,6 +35,13 @@
 		INSERT INTO user(user_id, user_password, user_name, user_phone, user_nickname, user_route)
 		VALUES (#{userId}, #{userPassword},#{userName},#{userPhone},#{userNickname},'0')
 	</insert>
+	
+	<!-- 정보수정하기 위해서 불러오는 회원정보 -->
+	<select id="selectUser" resultMap="bb" parameterType="com.mycompany.mygym.user.vo.User">
+		SELECT user_id, user_password, user_name, user_phone, user_nickname
+  		FROM user
+  		WHERE user_id = #{userId}
+	</select>
 	
 	<!-- 정보수정 -->
 	<update id="editUser" parameterType="com.mycompany.mygym.user.vo.User">
@@ -48,12 +55,17 @@
 		DELETE FROM user
 		WHERE user_id = #{userId}
 	</delete>
-
+	
+	<!-- 전체회원리스트 -->
+	<select id="allUser" resultMap="bb" parameterType="com.mycompany.mygym.user.vo.User">
+		SELECT user_id, user_password, user_name, user_phone, user_nickname
+  		FROM user
+	</select>
+	
 	<!-- 아이디 중복체크 -->
 	<select id="idCheck" resultMap="bb" parameterType="com.mycompany.mygym.user.vo.User">
 		SELECT COUNT(*) FROM user
 		WHERE user_id = #{userId}
 	</select>
-	
 	
 </mapper>

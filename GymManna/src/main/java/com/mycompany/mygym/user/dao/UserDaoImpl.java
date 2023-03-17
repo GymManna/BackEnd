@@ -1,5 +1,7 @@
 package com.mycompany.mygym.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -58,6 +60,33 @@ public class UserDaoImpl implements UserDao {
 //		return (User)(session.selectOne("UseUser.login", user));
 	}
 
+	//전체 회원 리스트
+	@Override
+	public List<User> getAllUser() {
+		log.debug("admin dao");
+		return session.selectList("UseUser.allUser");
+	}
+
+	//회원정보 수정
+	@Override
+	public int editUser(User user) {
+		log.debug("회원정보수정 dao");
+		return session.update("UserUser.editUser", user);
+	}
+	//정보 수정을 위해 불러오는 정보
+	@Override
+	public User selectUser(User user) {
+		
+		return session.selectOne("UserUser.selectUser");
+	}
+
+	//회원탈퇴
+	@Override
+	public int deleteUser() {
+		// TODO Auto-generated method stub
+		return session.delete("UserUser.withdraw");
+	}
+	
 
 
 
