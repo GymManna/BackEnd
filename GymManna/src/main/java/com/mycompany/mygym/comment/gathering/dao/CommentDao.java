@@ -2,15 +2,15 @@ package com.mycompany.mygym.comment.gathering.dao;
 
 import java.util.List;
 
-import com.mycompany.mygym.comment.gathering.vo.Comment;
+import com.mycompany.mygym.comment.gathering.vo.GComment;
 
 public interface CommentDao {
 
-	List<Comment> selectList(Comment comment);
+	List<GComment> selectList(GComment comment);
 	
-	int insertComment(Comment comment);
+	int insertComment(GComment comment);
 	
-	int updateComment(Comment comment);
+	int updateComment(GComment comment);
 	
-	int deleteComment(Comment comment);
+	int deleteComment(GComment comment);
 }

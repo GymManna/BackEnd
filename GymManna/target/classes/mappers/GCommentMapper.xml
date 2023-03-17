@@ -7,7 +7,7 @@
 <mapper namespace="com.mycompany.mygym.comment.gathering">
 
    <resultMap id="comment"
-      type="com.mycompany.mygym.comment.gathering.vo.Comment">
+      type="com.mycompany.mygym.comment.gathering.vo.GComment">
       <result property="commentGnum" column="comment_gnum" jdbcType="BIGINT"
          javaType="long" />
       <result property="commentGdate" column="comment_gdate" jdbcType="DATE"
@@ -28,18 +28,18 @@
 	  WHERE C.article_gnum = #{articleGnum}
   	</select>
 
-	<insert id="insertComment" parameterType="com.mycompany.mygym.comment.gathering.vo.Comment">
+	<insert id="insertComment" parameterType="com.mycompany.mygym.comment.gathering.vo.GComment">
 		INSERT INTO comment_gathering (article_gnum, user_nickname, comment_gcontent)
 		VALUES ( #{articleGnum}, #{userNickname}, #{commentGcontent} )
 	</insert>
 
-	<update id="updateComment" parameterType="com.mycompany.mygym.comment.gathering.vo.Comment">
+	<update id="updateComment" parameterType="com.mycompany.mygym.comment.gathering.vo.GComment">
 		UPDATE comment_gathering
 		SET comment_gcontent = #{commentGcontent}
 		WHERE comment_gnum = #{commentGnum}
 	</update>
 	
-	<delete id="deleteComment" parameterType="com.mycompany.mygym.comment.gathering.vo.Comment">
+	<delete id="deleteComment" parameterType="com.mycompany.mygym.comment.gathering.vo.GComment">
 		DELETE FROM comment_gathering
 		WHERE comment_gnum = #{commentGnum}
 	</delete>

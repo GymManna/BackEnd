@@ -2,15 +2,15 @@ package com.mycompany.mygym.comment.gathering.service;
 
 import java.util.List;
 
-import com.mycompany.mygym.comment.gathering.vo.Comment;
+import com.mycompany.mygym.comment.gathering.vo.GComment;
 
 public interface CommentService {
 
-	List<Comment> selectList(Comment comment);
+	List<GComment> selectList(GComment comment);
 	
-	boolean insertComment(Comment comment); 
+	boolean insertComment(GComment comment); 
 	
-	boolean updateComment(Comment comment); 
+	boolean updateComment(GComment comment); 
 	
-	boolean deleteComment(Comment comment); 
+	boolean deleteComment(GComment comment); 
 }

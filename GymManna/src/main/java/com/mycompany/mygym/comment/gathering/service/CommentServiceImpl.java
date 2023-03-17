@@ -12,7 +12,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.mycompany.mygym.comment.gathering.dao.CommentDaoImpl;
-import com.mycompany.mygym.comment.gathering.vo.Comment;
+import com.mycompany.mygym.comment.gathering.vo.GComment;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -27,9 +27,9 @@ public class CommentServiceImpl implements CommentService {
 	private PlatformTransactionManager transactionManager;
 
 	@Override
-	public List<Comment> selectList(Comment comment) {
+	public List<GComment> selectList(GComment comment) {
 		
-		List<Comment> list = null;
+		List<GComment> list = null;
 		
 		list = dao.selectList(comment);
 		
@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public boolean insertComment(Comment comment) {
+	public boolean insertComment(GComment comment) {
 		
 		// Transaction 시작
 		TransactionStatus txStatus =transactionManager.getTransaction(new DefaultTransactionDefinition());
@@ -66,7 +66,7 @@ public class CommentServiceImpl implements CommentService {
 	
 
 	@Override
-	public boolean updateComment(Comment comment) {
+	public boolean updateComment(GComment comment) {
 		
 		// Transaction 시작
 		TransactionStatus txStatus =transactionManager.getTransaction(new DefaultTransactionDefinition());
@@ -93,7 +93,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public boolean deleteComment(Comment comment) {
+	public boolean deleteComment(GComment comment) {
 		// Transaction 시작
 		TransactionStatus txStatus =transactionManager.getTransaction(new DefaultTransactionDefinition());
 				

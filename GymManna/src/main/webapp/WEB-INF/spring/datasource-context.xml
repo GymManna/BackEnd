@@ -35,8 +35,7 @@
 			<list>
 				<value>classpath:mappers/GatheringMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  --> 
 				<value>classpath:mappers/CenterMapper.xml</value>
-				<value>classpath:mappers/CommentMapper.xml</value>
-				<value>classpath:mappers/UserMapper.xml</value>
+				<value>classpath:mappers/GCommentMapper.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -28,7 +28,7 @@ import com.google.zxing.common.BitMatrix;
 import com.mycompany.mygym.article.gathering.service.ArticleService;
 import com.mycompany.mygym.article.gathering.vo.Gathering;
 import com.mycompany.mygym.comment.gathering.service.CommentServiceImpl;
-import com.mycompany.mygym.comment.gathering.vo.Comment;
+import com.mycompany.mygym.comment.gathering.vo.GComment;
 
 @RestController
 @RequestMapping("article")
@@ -87,7 +87,7 @@ public class ArticleController {
 		Gathering gathering = new Gathering();
 		gathering.setArticleGnum(articleGnum);
 		
-		Comment comment = new Comment();
+		GComment comment = new GComment();
 		comment.setArticleGnum(articleGnum);
 		
 		log.debug(articleGnum);
@@ -96,7 +96,7 @@ public class ArticleController {
 		Gathering info = service.selectInfo(gathering);
 		
 		// 게시글 댓글 리스트 불러오기 
-		List<Comment> list = Cservice.selectList(comment);
+		List<GComment> list = Cservice.selectList(comment);
 		
 		log.debug(info);
 		model.addAttribute("DInfo",info);

@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mycompany.mygym.comment.gathering.vo.Comment;
+import com.mycompany.mygym.comment.gathering.vo.GComment;
 
 @Repository("commentDao")
 public class CommentDaoImpl implements CommentDao {
@@ -15,25 +15,25 @@ public class CommentDaoImpl implements CommentDao {
 	private SqlSession session;
 	
 	@Override
-	public List<Comment> selectList(Comment comment) {
+	public List<GComment> selectList(GComment comment) {
 		
 		return session.selectList("com.mycompany.mygym.comment.gathering.selectCommentList",comment);
 	}
 
 	@Override
-	public int insertComment(Comment comment) {
+	public int insertComment(GComment comment) {
 		
 		return session.insert("com.mycompany.mygym.comment.gathering.insertComment",comment);
 	}
 
 	@Override
-	public int updateComment(Comment comment) {
+	public int updateComment(GComment comment) {
 		
 		return session.update("com.mycompany.mygym.comment.gathering.updateComment",comment);
 	}
 
 	@Override
-	public int deleteComment(Comment comment) {
+	public int deleteComment(GComment comment) {
 	
 		return session.delete("com.mycompany.mygym.comment.gathering.deleteComment",comment);
 	}

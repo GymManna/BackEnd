@@ -39,6 +39,7 @@
         
         <Logger name="myBook" level="trace"></Logger>
   
+  		<Logger name="com.mycompany.mygym.article.gathering" level="trace"></Logger>
   
         <Root level="INFO">
             <AppenderRef ref="stdout_2" />
