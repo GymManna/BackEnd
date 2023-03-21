@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GComment {
 
-	private long commentGnum;
+	private Long commentGnum;
 	private Date commentGdate;
-	private long articleGnum;
+	private Long articleGnum;
 	private String userNickname;
 	private String commentGcontent;
 }

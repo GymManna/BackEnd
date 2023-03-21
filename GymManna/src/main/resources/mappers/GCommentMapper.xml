@@ -9,19 +9,19 @@
    <resultMap id="comment"
       type="com.mycompany.mygym.comment.gathering.vo.GComment">
       <result property="commentGnum" column="comment_gnum" jdbcType="BIGINT"
-         javaType="long" />
+         javaType="java.lang.Long" />
       <result property="commentGdate" column="comment_gdate" jdbcType="DATE"
          javaType="java.sql.Date" />
       <result property="articleGnum" column="article_gnum" jdbcType="BIGINT"
-         javaType="long" />
+         javaType="java.lang.Long" />
       <result property="userNickname" column="user_nickname" jdbcType="VARCHAR"
-         javaType="String" />
+         javaType="java.lang.String" />
       <result property="commentGcontent" column="comment_gcontent" jdbcType="VARCHAR"
-         javaType="String" />
+         javaType="java.lang.String" />
    </resultMap>
 
    	<select id="selectCommentList" resultMap="comment">
-      SELECT  C.comment_gnum , C.comment_gdate, C.user_nickname,C.comment_gcontent
+      SELECT  C.comment_gnum , C.comment_gdate, C.user_nickname,C.comment_gcontent , C.article_gnum
 	  FROM comment_gathering AS C
 	  INNER JOIN user AS U
 	  ON C.user_nickname = U.user_nickname
@@ -44,5 +44,10 @@
 		WHERE comment_gnum = #{commentGnum}
 	</delete>
 	
+	<select id="myComment" resultMap="comment">
+      SELECT comment_gnum , comment_gdate, user_nickname, comment_gcontent ,article_gnum
+	  FROM comment_gathering 
+	  WHERE user_nickname = #{userNickname}
+  	</select>
 	
 </mapper>

@@ -9,28 +9,33 @@
    <resultMap id="gathering"
       type="com.mycompany.mygym.article.gathering.vo.Gathering">
       <result property="articleGnum" column="article_gnum" jdbcType="BIGINT"
-         javaType="long" />
+         javaType="java.lang.Long" />
       <result property="articleGtitle" column="article_gtitle" jdbcType="VARCHAR"
-         javaType="String" /> 
+         javaType="java.lang.String" /> 
       <result property="articleGcontent" column="article_gcontent" jdbcType="VARCHAR"
-         javaType="String" /> 
+         javaType="java.lang.String" /> 
       <result property="articleGdate" column="article_gdate" jdbcType="DATE"
          javaType="java.sql.Date" /> 
       <result property="userId" column="user_id" jdbcType="VARCHAR"
-         javaType="String" />
+         javaType="java.lang.String" />
       <result property="categoryType" column="category_type" jdbcType="VARCHAR"
-         javaType="String" />
+         javaType="java.lang.String" />
       <result property="centerNum" column="center_num" jdbcType="BIGINT"
-         javaType="long" />                        
+         javaType="java.lang.Long" />                        
    </resultMap>
 
 <!--    <select id="selectCountList" resultMap="gathering"> -->
    <select id="selectCountList" resultType="Integer">
-    	SELECT count(article_gnum) AS countGnum, article_gnum
+    	SELECT count(article_gnum) AS countGnum
 		FROM article_gathering 
 		WHERE center_num = (SELECT center_num FROM centertbl WHERE center_name= #{centerName})
-		GROUP BY article_gnum
 		ORDER BY count(article_gnum) DESC
+   </select>
+   
+   <select id="selectGnum" resultMap="gathering">
+   		SELECT article_gnum
+		FROM article_gathering 
+		WHERE center_num = (SELECT center_num FROM centertbl WHERE center_name= #{centerName})
    </select>
    
    <select id="selectGatheringList" resultMap="gathering">
@@ -73,4 +78,10 @@
    		
    </delete>
 
+	 <select id="selectMyManna" resultMap="gathering">
+    	SELECT article_gnum , article_gtitle, article_gdate, user_id
+		FROM article_gathering 
+		WHERE user_id = #{userId}
+		ORDER BY article_gnum DESC
+   </select>
 </mapper>

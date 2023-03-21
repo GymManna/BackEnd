@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Center {
-
-	private Long centerNum;
-	private String centerName;
+public class Post {
+   
+	private Long postNum;
+	private Long articleGnum;
+	private String userId;  // Id라 적어놓고 닉네임을 보내줄 것
 }

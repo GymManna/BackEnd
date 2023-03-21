@@ -13,4 +13,6 @@ public interface CommentDao {
 	int updateComment(GComment comment);
 	
 	int deleteComment(GComment comment);
+	
+	List<GComment> selectMyComment(GComment comment);
 }

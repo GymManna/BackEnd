@@ -38,5 +38,11 @@ public class CommentDaoImpl implements CommentDao {
 		return session.delete("com.mycompany.mygym.comment.gathering.deleteComment",comment);
 	}
 
+	@Override
+	public List<GComment> selectMyComment(GComment comment) {
+	
+		return session.selectList("com.mycompany.mygym.comment.gathering.myComment",comment);
+	}
+
 
 }
