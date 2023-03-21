@@ -53,9 +53,9 @@ public class ArticlePhotoController {
 		int result = service.createPost(articlePhoto, imageUrl);
 		
 		if(result == 1) {
-			return new ResponseEntity<>("게시글 등룍이 완료됐습니다.", HttpStatus.OK);
+			return ResponseEntity.ok().build();
 		}else {
-			return new ResponseEntity<>("게시글 등룍에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			return ResponseEntity.notFound().build();
 		}
 	}
 

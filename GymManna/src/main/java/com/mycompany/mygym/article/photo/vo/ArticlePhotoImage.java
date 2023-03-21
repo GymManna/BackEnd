@@ -15,5 +15,7 @@ public class ArticlePhotoImage {
 	private String articlePcontent;
 	private Date articlePdate;
 	private String userId;
-	private String imageUrl;
+	
+	private String userName;
+	private String articleImgurl;
 }

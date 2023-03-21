@@ -12,7 +12,7 @@ public interface ArticlePhotoDao {
 
 	List<ArticlePhoto> getArticle();
 
-	long getNowCreatedId();
+	long getNowCreatedArticle();
 
 	int createImage(ArticleImage articleImage);
 
