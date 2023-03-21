@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.mygym.article.gathering.vo.Center;
 import com.mycompany.mygym.article.gathering.vo.Gathering;
+import com.mycompany.mygym.article.gathering.vo.Post;
 
 @Repository
 @Transactional
@@ -24,9 +25,16 @@ public class ArticleDao implements ArticleDaoImpl {
 	// 만나 센터 별 게시글 수 확인
 	@Override
 //	public Gathering selectText(Gathering gathering) {
-	public int selectText(Gathering gathering) {
+	public List<Gathering> selectText(Gathering gathering) {
+		System.out.println(gathering);
+		return session.selectList("com.mycompany.mygym.article.gathering.selectCountList",gathering);
+	}
+	
+	// 만나 센터별 게시글 번호
+	@Override
+	public List<Gathering> selectGnum(Gathering gathering) {
 		
-		return session.selectOne("com.mycompany.mygym.article.gathering.selectCountList",gathering);
+		return session.selectList("com.mycompany.mygym.article.gathering.selectGnum",gathering);
 	}
 
 	// 만나 센터의 게시글 리스트
@@ -66,6 +74,31 @@ public class ArticleDao implements ArticleDaoImpl {
 		
 		return session.delete("com.mycompany.mygym.article.gathering.deleteInfo",gathering);
 	}
+
+	@Override
+	public List<Gathering> selectMyManna(Gathering gathering) {
+		
+		return session.selectList("com.mycompany.mygym.article.gathering.selectMyManna",gathering);
+	}
+
+	@Override
+	public Post selectUser(Post post) {
+		
+		return session.selectOne("com.mycompany.mygym.article.gathering.post.selectUser",post);
+	}
+
+	@Override
+	public int deleteUser(Post post) {
+		
+		return session.delete("com.mycompany.mygym.article.gathering.post.deletePostUser",post);
+	}
+
+	@Override
+	public int insertUser(Post post) {
+		
+		return session.insert("com.mycompany.mygym.article.gathering.post.insertUser",post);
+	}
+
 	
 	
 	

@@ -13,4 +13,6 @@ public interface CommentService {
 	boolean updateComment(GComment comment); 
 	
 	boolean deleteComment(GComment comment); 
+	
+	List<GComment> selectMyComment(GComment comment);
 }

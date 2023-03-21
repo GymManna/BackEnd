@@ -9,9 +9,9 @@
    <resultMap id="center"
       type="com.mycompany.mygym.article.gathering.vo.Center">
       <result property="centerNum" column="center_num" jdbcType="BIGINT"
-         javaType="long" />
+         javaType="java.lang.Long" />
       <result property="centerName" column="center_name" jdbcType="VARCHAR"
-         javaType="String" />
+         javaType="java.lang.String" />
    </resultMap>
 
    <select id="selectCenter" resultMap="center">
