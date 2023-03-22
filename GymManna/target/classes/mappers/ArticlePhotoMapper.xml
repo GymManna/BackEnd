@@ -46,23 +46,11 @@
 			jdbcType="VARCHAR" javaType="java.lang.String" />
 		<result property="articleImgurl" column="article_imgurl"
 			jdbcType="VARCHAR" javaType="java.lang.String" />
+		<result property="userNickname" column="user_nickname"
+			jdbcType="VARCHAR" javaType="java.lang.String" />
 	</resultMap>
 
-	<!-- 게시글 불러오기 -->
-	<select id="selectArticle" resultMap="articlePhotoImageResultMap">
-		<![CDATA[
-			SELECT ap.article_pnum, ap.article_ptitle, 
-			ap.article_pcontent, ap.article_pdate, u.user_id,
-			u.user_name, img.article_imgurl
-			FROM article_photo ap
-			INNER JOIN user u
-				ON ap.user_id = u.user_id
-			INNER JOIN imgtbl img
-				ON ap.article_pnum = img.article_pnum;
-		]]>
-	</select>
-
-	<!-- 게시글 생성 -->
+	<!-- [Create] 게시글 -->
 	<insert id="createPost" parameterType="ArticlePhoto">
        <![CDATA[   
          INSERT INTO article_photo (article_ptitle, article_pcontent, user_id)
@@ -70,14 +58,46 @@
       ]]>
 	</insert>
 
-	<!-- 가장 최근 입력 게시글 id 불러오기 -->
+	<!-- [Read] -->
+	<select id="selectArticle"
+		resultMap="articlePhotoImageResultMap">
+		<![CDATA[
+			SELECT ap.article_pnum, ap.article_ptitle, 
+			ap.article_pcontent, ap.article_pdate, u.user_id,
+			u.user_name, u.user_nickname, img.article_imgurl
+			FROM article_photo ap
+			INNER JOIN user u
+				ON ap.user_id = u.user_id
+			INNER JOIN imgtbl img
+				ON ap.article_pnum = img.article_pnum
+			ORDER BY ap.article_pnum DESC;
+		]]>
+	</select>
+
+	<!-- [Read] -->
+	<select id="selectArticleById" parameterType="java.lang.Long"
+		resultMap="articlePhotoImageResultMap">
+		<![CDATA[
+			SELECT ap.article_pnum, ap.article_ptitle, 
+			ap.article_pcontent, ap.article_pdate, u.user_id,
+			u.user_name, u.user_nickname, img.article_imgurl
+			FROM article_photo ap
+			INNER JOIN user u
+				ON ap.user_id = u.user_id
+			INNER JOIN imgtbl img
+				ON ap.article_pnum = img.article_pnum
+			WHERE ap.article_pnum = #{articlePnum}
+		]]>
+	</select>
+
+	<!-- [Read] 가장 최근 입력 PK -->
 	<select id="selectNowCreatedArticle" resultType="java.lang.Long">
 		<![CDATA[
 			SELECT LAST_INSERT_ID();
 		]]>
 	</select>
 
-	<!-- 이미지 저장 -->
+	<!-- [Create] 이미지 -->
 	<insert id="createImage" parameterType="ArticlePhoto">
        <![CDATA[   
          INSERT INTO imgtbl (article_pnum, article_imgurl)

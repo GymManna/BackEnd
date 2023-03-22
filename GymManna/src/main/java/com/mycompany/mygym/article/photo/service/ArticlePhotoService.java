@@ -4,9 +4,10 @@ import java.util.List;
 
 
 import com.mycompany.mygym.article.photo.vo.ArticlePhoto;
+import com.mycompany.mygym.comment.photo.vo.CommentPhoto;
 
 public interface ArticlePhotoService {
 	int createPost(ArticlePhoto articlePhoto, String imageUrl);
-	
 	List<ArticlePhoto> getArticle();
+	List<ArticlePhoto> getPostById(long articlePnum);
 }

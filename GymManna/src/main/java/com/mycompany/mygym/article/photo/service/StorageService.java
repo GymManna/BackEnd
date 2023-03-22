@@ -2,16 +2,16 @@ package com.mycompany.mygym.article.photo.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+//import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Service
 public class StorageService {
