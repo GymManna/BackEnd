@@ -117,5 +117,13 @@ public class CommentServiceImpl implements CommentService {
 		
 		return count;
 	}
+
+	@Override
+	public List<GComment> selectMyComment(GComment comment) {
+		
+		List<GComment> list = dao.selectMyComment(comment);
+		
+		return list;
+	}
 	
 }

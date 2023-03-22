@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Gathering {
 
-	private long articleGnum;
+	private Long articleGnum;
 	private String articleGtitle;
 	private String articleGcontent;
 	private Date articleGdate;
 	private String userId;
 	private String categoryType;
-	private long centerNum;
+	private Long centerNum;
 	private String centerName;
 	private int countGnum;
 	private int countPuser;

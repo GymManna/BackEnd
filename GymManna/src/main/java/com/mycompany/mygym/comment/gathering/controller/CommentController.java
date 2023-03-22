@@ -3,24 +3,32 @@ package com.mycompany.mygym.comment.gathering.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.mygym.comment.gathering.service.CommentServiceImpl;
 import com.mycompany.mygym.comment.gathering.vo.GComment;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:8081/")
 @RequestMapping("comment")
 public class CommentController {
 
 	@Autowired
 	private CommentServiceImpl service;
 	
-	@RequestMapping(value="create/{pathv}", produces="application/json; charset=UTF-8")
-	public GComment insertComment(@PathVariable String pathv, @RequestParam String commentGcontent, int articleGnum,String userNickname ,Model model ) {
+	// 만나 댓글 생성
+	@PostMapping(value="create", produces="application/json; charset=UTF-8")
+	public ResponseEntity<GComment> insertComment(@RequestParam String commentGcontent,@RequestParam Long articleGnum,@RequestParam String userNickname ,Model model ) {
 		
 		GComment comment = new GComment();
 		comment.setArticleGnum(articleGnum);
@@ -34,11 +42,12 @@ public class CommentController {
 			model.addAttribute("CList",list);
 		}
 		
-		return comment;
+		return ResponseEntity.ok(comment);
 	}
 	
-	@RequestMapping(value="update/{commentGcontent}/{commentGnum}", produces="application/json; charset=UTF-8")
-	public GComment updateComment(@PathVariable String commentGcontent, @PathVariable int commentGnum, Model model) {
+	// 만나 댓글 수정
+	@PutMapping(value="update", produces="application/json; charset=UTF-8")
+	public ResponseEntity<GComment> updateComment(@RequestParam String commentGcontent, @RequestParam Long commentGnum, Model model) {
 		
 		GComment comment = new GComment();
 		comment.setCommentGnum(commentGnum);
@@ -51,11 +60,13 @@ public class CommentController {
 			model.addAttribute("CList",list);
 		}
 		
-		return comment;
+		return ResponseEntity.ok(comment);
+		
 	}
 	
-	@RequestMapping(value="delete/{commentGnum}", produces="application/json; charset=UTF-8")
-	public GComment deleteComment(@PathVariable int commentGnum, Model model) {
+	// 만나 댓글 삭제
+	@DeleteMapping(value="delete", produces="application/json; charset=UTF-8")
+	public ResponseEntity<GComment> deleteComment(@RequestParam Long commentGnum, Model model) {
 		
 		GComment comment = new GComment();
 		comment.setCommentGnum(commentGnum);
@@ -67,7 +78,19 @@ public class CommentController {
 			model.addAttribute("CList",list);
 		}
 		
-		return comment;
+		return ResponseEntity.ok(comment);
 	}
 	
+	// 마이페이지 만나 댓글 조회
+	@GetMapping(value="myComment")
+	public ResponseEntity<List<GComment>> myComment(@RequestParam String userNickname, Model model) {
+		
+		GComment comment = new GComment();
+		comment.setUserNickname(userNickname);
+		
+		List<GComment> list = service.selectMyComment(comment);
+		
+		return ResponseEntity.ok(list);
+		
+	}
 }
