@@ -18,27 +18,30 @@ public class ArticlePhotoDaoImpl implements ArticlePhotoDao{
 	@Autowired
 	private SqlSession session;
 	
-	@Override
+	@Override // [Create] 게시글
 	public int createPost(ArticlePhoto articlePhoto) {
-		log.debug("2. [DAO] 게시글 생성하기");
 		return session.insert("com.mycompany.mygym.article.photo.createPost", articlePhoto);
 	}
 
-	@Override
+	@Override // [Read]
 	public List<ArticlePhoto> getArticle() {
 		return session.selectList("com.mycompany.mygym.article.photo.selectArticle");
 	}
 
-	@Override
+	@Override // [Read] 최근 생성 게시글 PK 가져오기
 	public long getNowCreatedArticle() {
-		log.debug("4. [DAO] 게시글 ID 가져오기");
 		return session.selectOne("com.mycompany.mygym.article.photo.selectNowCreatedArticle");
 	}
 
-	@Override
+	@Override // [Create]
 	public int createImage(ArticleImage articleImage) {
-		log.debug("5. [DAO] 이미지 등록하기");
 		return session.insert("com.mycompany.mygym.article.photo.createImage", articleImage);
 		
+	}
+
+	@Override // [Read] 상세
+	public List<ArticlePhoto> getPostById(long articlePnum) {
+		log.debug("articlePnum");
+		return session.selectList("com.mycompany.mygym.article.photo.selectArticleById", articlePnum);
 	}
 }

@@ -26,42 +26,27 @@ public class ArticlePhotoServiceImpl implements ArticlePhotoService {
 
 	@Override
 	public int createPost(ArticlePhoto articlePhoto, String imageUrl) {
-		// Log4J
-		Logger log = LogManager.getLogger("case3");
-		
-		// 트랜잭션
 		TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
-		
-		// 결과
+
 		int result = 0;
-		
-		// 게시글 등록
-		int resultCreatePost = dao.createPost(articlePhoto);
-		
-		// 게시글 PK
+		int resultCreatePost = 0;
 		long articleNum = 0;
-		
-		// 이미지 VO
 		ArticleImage articleImage = new ArticleImage();
-		
-		log.debug("1. [Service] 접속");
-		
+
 		try {
-			// 게시글 등록 성공 시
+			resultCreatePost = dao.createPost(articlePhoto);
+
 			if (resultCreatePost != 0) {
-				log.debug("3. [Service] 게시글 등록 성공");
-				
 				articleNum = dao.getNowCreatedArticle();
 				articleImage.setArticlePnum(articleNum);
 				articleImage.setArticleImgurl(imageUrl);
-				
-				// 이미지 등록
-				dao.createImage(articleImage);
-				log.debug("7. [Service] 이미지 등록 성공");
 
+				dao.createImage(articleImage);
 				transactionManager.commit(status);
-				
+
 				result = 1;
+			} else {
+				transactionManager.commit(status);
 			}
 		} catch (Exception e) {
 			transactionManager.rollback(status);
@@ -73,5 +58,10 @@ public class ArticlePhotoServiceImpl implements ArticlePhotoService {
 	@Override
 	public List<ArticlePhoto> getArticle() {
 		return dao.getArticle();
+	}
+
+	@Override
+	public List<ArticlePhoto> getPostById(long articlePnum) {
+		return dao.getPostById(articlePnum);
 	}
 }
