@@ -33,10 +33,10 @@
 			value="classpath:mybatis-config.xml" />
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:mappers/UserMapper.xml</value>
+				<value>classpath:mappers/UserMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  -->
 				<value>classpath:mappers/ArticlePhotoMapper.xml</value>
 				<value>classpath:mappers/CommentPhotoMapper.xml</value>
-				<value>classpath:mappers/ArticleImageMapper.xml</value> <!--이 value에 sql mapper 설정을 하면 된다.  --> 
+				<value>classpath:mappers/ArticleImageMapper.xml</value>
 				<value>classpath:mappers/GatheringMapper.xml</value>
 				<value>classpath:mappers/GCommentMapper.xml</value>
 				<value>classpath:mappers/CenterMapper.xml</value>
