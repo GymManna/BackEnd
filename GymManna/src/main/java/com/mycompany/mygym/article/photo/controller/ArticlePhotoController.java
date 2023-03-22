@@ -83,8 +83,13 @@ public class ArticlePhotoController {
 
 	// [Delete]
 	@DeleteMapping(value = "/{articlePnum}")
-	public ResponseEntity<?> deletePost() {
-		return null;
-	}
+	public ResponseEntity<?> deletePost(@PathVariable("articlePnum") long articlePnum) {
+		int result = service.deletePost(articlePnum);
 
+		if (result != 0) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }

@@ -104,4 +104,13 @@
          VALUES (#{articlePnum}, #{articleImgurl});      
       ]]>
 	</insert>
+
+	<!-- [Delete] -->
+	<delete id="deleteArticle" parameterType="java.lang.Long">
+		<![CDATA[
+			DELETE
+			FROM article_photo
+			WHERE article_pnum = #{articlePnum}
+		]]>
+	</delete>
 </mapper>

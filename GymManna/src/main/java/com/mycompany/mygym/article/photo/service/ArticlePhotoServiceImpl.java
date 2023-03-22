@@ -24,6 +24,7 @@ public class ArticlePhotoServiceImpl implements ArticlePhotoService {
 	@Autowired
 	private ArticlePhotoDao dao;
 
+	// [Create]
 	@Override
 	public int createPost(ArticlePhoto articlePhoto, String imageUrl) {
 		TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
@@ -55,13 +56,21 @@ public class ArticlePhotoServiceImpl implements ArticlePhotoService {
 		return result;
 	}
 
+	// [Read]
 	@Override
 	public List<ArticlePhoto> getArticle() {
 		return dao.getArticle();
 	}
 
+	// [Read] 상세
 	@Override
 	public List<ArticlePhoto> getPostById(long articlePnum) {
 		return dao.getPostById(articlePnum);
+	}
+
+	// [Delete]
+	@Override
+	public int deletePost(long articlePnum) {
+		return dao.deletePost(articlePnum);
 	}
 }
