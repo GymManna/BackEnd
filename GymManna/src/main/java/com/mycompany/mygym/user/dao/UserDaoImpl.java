@@ -41,6 +41,13 @@ public class UserDaoImpl implements UserDao {
 		log.debug("회원가입dao");
 		return session.insert("UseUser.register", user);
 	}
+
+	@Override
+	public int createUserKakao(User user) {
+		
+		log.debug("회원가입Kakao dao");
+		return session.insert("UseUser.registerKakao", user);
+	}
 	
 	//로그인
 	@Override
@@ -71,20 +78,20 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int editUser(User user) {
 		log.debug("회원정보수정 dao");
-		return session.update("UserUser.editUser", user);
+		return session.update("UseUser.editUser", user);
 	}
 	//정보 수정을 위해 불러오는 정보
 	@Override
 	public User selectUser(User user) {
 		
-		return session.selectOne("UserUser.selectUser");
+		return session.selectOne("UseUser.selectUser", user);
 	}
 
 	//회원탈퇴
 	@Override
 	public int deleteUser() {
 		// TODO Auto-generated method stub
-		return session.delete("UserUser.withdraw");
+		return session.delete("UseUser.withdraw");
 	}
 	
 

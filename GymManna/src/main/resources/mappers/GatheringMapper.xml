@@ -40,7 +40,7 @@
    
    <select id="selectGatheringList" resultMap="gathering">
     	SELECT G.article_gtitle, G.article_gnum, 
-		(SELECT COUNT(P.user_id) FROM post_gathering AS P WHERE P.article_gnum = G.article_gnum AND G.article_gnum = #{ articleGnum } ) 
+		(SELECT COUNT(P.user_id) FROM post_gathering AS P WHERE P.article_gnum = G.article_gnum) 
 		AS countPuser
 		FROM article_gathering AS G
 		WHERE G.center_num = (SELECT C.center_num FROM centertbl AS C WHERE C.center_name= #{centerName})

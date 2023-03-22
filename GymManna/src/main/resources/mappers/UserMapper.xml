@@ -36,6 +36,12 @@
 		VALUES (#{userId}, #{userPassword},#{userName},#{userPhone},#{userNickname},'0')
 	</insert>
 	
+	<!-- 카카오 회원가입 -->
+	<insert id="registerKakao" parameterType="com.mycompany.mygym.user.vo.User">
+		INSERT INTO user(user_id, user_password, user_name, user_phone, user_nickname, user_route)
+		VALUES (#{userId}, #{userPassword},#{userName},#{userPhone},#{userNickname},'1')
+	</insert>
+	
 	<!-- 정보수정하기 위해서 불러오는 회원정보 -->
 	<select id="selectUser" resultMap="bb" parameterType="com.mycompany.mygym.user.vo.User">
 		SELECT user_id, user_password, user_name, user_phone, user_nickname

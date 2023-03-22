@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public boolean createUser(User user) {
+	public User createUser(User user) {
 		log.debug("회원가입서비스");
 //		TransactionStatus txStatus = 
 //				transactionManager.getTransaction(new DefaultTransactionDefinition());
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 //		boolean result = false;
 		
 //		try {
-			userDao.createUser(user);
+//			userDao.createUser(user);
 			
 //			result = true;
 //			transactionManager.commit(txStatus);	
@@ -45,23 +45,50 @@ public class UserServiceImpl implements UserService {
 //			result = false;
 //			transactionManager.rollback(txStatus);
 //		}
-		return true;
-//		return result;
+		
+		int result = userDao.createUser(user);
+		if (result != 0) {
+			return userDao.selectUser(user);
+		} else {
+			return null;
+		}
+	}
+	
+	@Override
+	public User createUserKakao(User user) {
+		log.debug("회원가입서비스");
+//		TransactionStatus txStatus = 
+//				transactionManager.getTransaction(new DefaultTransactionDefinition());
+		
+//		boolean result = false;
+		
+//		try {
+//			userDao.createUser(user);
+			
+//			result = true;
+//			transactionManager.commit(txStatus);	
+//			
+//		} catch (Exception e) {
+//			result = false;
+//			transactionManager.rollback(txStatus);
+//		}
+		
+		int result = userDao.createUserKakao(user);
+		if (result != 0) {
+			return userDao.selectUser(user);
+		} else {
+			return null;
+		}
 	}
 	
 	//로그인
 	@Override
     public User loginUser(User user) {
-		
-		
 		log.debug("서비스");
-		log.debug(user);
-//		log.debug(user.getUserId());
-//		log.debug(user.getUserPassword());
 
 		//dao일시키기
 		User result = userDao.findByUsername(user);
-		log.debug(result);
+//		log.debug(result);
 		//if문 아이디 비번 틀렷을때
 		if(result != null && result.getUserPassword().equals(user.getUserPassword())) {
 			log.debug("로그인 성공");
@@ -83,7 +110,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean editUser(User user) {
 		log.debug("회원정보 수정 서비스");
-		userDao.selectUser(user);
+		User result = userDao.selectUser(user);
 		userDao.editUser(user);
 		return true;
 	}

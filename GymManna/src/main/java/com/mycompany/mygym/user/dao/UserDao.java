@@ -14,6 +14,7 @@ public interface UserDao {
 //	int insertUser(User user);
 //	User selectUser(User user);
 	int createUser(User user);
+	int createUserKakao(User user);
 	
 	//로그인
 	User findByUsername(User user);

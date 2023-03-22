@@ -80,20 +80,19 @@ public class ArticleController {
 
 	// 만나 센터의 게시글 리스트
 	@GetMapping(value = "searchlist", produces = "application/json; charset=UTF-8")
-	public HashMap<Object, Object> searchListHandler(@RequestParam("centerName") String centerName,
-			@RequestParam("articleGnum") Long articleGnum, Model model) {
+	public HashMap<Object, Object> searchListHandler(@RequestParam("centerName") String centerName, Model model) {
 
 		Gathering gathering = new Gathering();
 		gathering.setCenterName(centerName);
-		gathering.setArticleGnum(articleGnum);
-		log.debug(articleGnum);
+//		gathering.setArticleGnum(articleGnum);
+//		log.debug(articleGnum);
 
 		List<Gathering> list = service.selectGatheringList(gathering);
 
 		model.addAttribute("GList", list);
 
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
-		map.put("만나", list);
+		map.put("GList", list);
 
 		log.debug(list);
 

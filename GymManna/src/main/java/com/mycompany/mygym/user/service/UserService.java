@@ -13,7 +13,8 @@ public interface UserService {
 	//회원가입
 	//User selectUser(User user);
 	
-	boolean createUser(User user);
+	User createUser(User user);
+	User createUserKakao(User user);
 
 	//회원전체 리스트 불러오기
 	List<User> allUser();
