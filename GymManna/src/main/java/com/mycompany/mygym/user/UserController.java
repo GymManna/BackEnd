@@ -79,16 +79,27 @@ public class UserController {
 		
 		model.addAttribute("user", user);
 		
-//		if(result == null ) {
-//			log.debug("서비스 실패");
-//			return "user/loginFail";
-//		} else {
-//			return "user/loginSuccess";
-//		}
 		if(result == null ) {
-			log.debug("서비스 실패");
+			log.debug("로그인 실패");
 		}
+		return result;
+	}
+	
+	//로그인 - 카카오
+	@GetMapping(value = "/loginkakao", produces = "application/json; charset=UTF-8")
+	public User loginKakao(Model model, String userId) {
+		log.debug("login");
+		User user = new User();
+		user.setUserId(userId);
+		user.setUserRoute(1);
+//		log.debug(user);
+		User result = userService.loginUserKakao(user);
 		
+		model.addAttribute("user", user);
+		
+		if(result == null ) {
+			log.debug("로그인 실패");
+		}
 		return result;
 	}
 	

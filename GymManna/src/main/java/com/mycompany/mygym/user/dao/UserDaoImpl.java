@@ -66,7 +66,17 @@ public class UserDaoImpl implements UserDao {
 		
 //		return (User)(session.selectOne("UseUser.login", user));
 	}
+	
+	//로그인 - 카카오
+	@Override
+	public User findByUsernameKakao(User user) {
+		log.debug("dao");
 
+		User result = session.selectOne("UseUser.login", user);
+		log.debug(result);
+		return result;
+	}
+	
 	//전체 회원 리스트
 	@Override
 	public List<User> getAllUser() {

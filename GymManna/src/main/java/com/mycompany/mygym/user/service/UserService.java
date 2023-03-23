@@ -9,6 +9,7 @@ public interface UserService {
 	
 	//로그인
 	User loginUser(User user);
+	User loginUserKakao(User user);
 	
 	//회원가입
 	//User selectUser(User user);
@@ -25,4 +26,5 @@ public interface UserService {
 	
 	//회원탈퇴
 	int deleteUser();
+
 }
