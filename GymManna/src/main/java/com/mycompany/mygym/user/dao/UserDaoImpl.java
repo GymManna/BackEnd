@@ -21,45 +21,31 @@ public class UserDaoImpl implements UserDao {
 	private SqlSession session;
 
 	//회원가입
-//	@Override
-//	public int insertUser(User user) {
-//		log.debug("회원가입dao");
-//		
-//		
-//		return session.insert("UseUser.register", user);
-//	}
-//
-//	@Override
-//	public User selectUser(User user) {
-//		log.debug("회원가입받아오는dao");
-//		return session.selectOne("UseUser.regiseterChk", user);
-//	}
-
 	@Override
 	public int createUser(User user) {
-		
 		log.debug("회원가입dao");
 		return session.insert("UseUser.register", user);
 	}
 
 	@Override
 	public int createUserKakao(User user) {
-		
 		log.debug("회원가입Kakao dao");
 		return session.insert("UseUser.registerKakao", user);
 	}
-	
+
+	//정보 수정을 위해 불러오는 정보
+	@Override
+	public User selectUser(User user) {
+		
+		return session.selectOne("UseUser.selectUser", user);
+	}
+
 	//로그인
 	@Override
 	public User findByUsername(User user) {
-		
-//		User user = new User();
-//		user.setUserId(userId);
-//		log.debug(userId);
-		log.debug("dao");
+		log.debug("findByUsername");
 
-		//list = session.selectList("User.login", user); // db에서 select 실행해서 그 결과값 돌려받기
-		User result = session.selectOne("UseUser.login", user);
+		User result = session.selectOne("UseUser.selectUser", user);
 		log.debug(result);
 		return result;
 //		log.debug((User)(session.selectOne("UseUser.login", user)));
@@ -72,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 	public User findByUsernameKakao(User user) {
 		log.debug("dao");
 
-		User result = session.selectOne("UseUser.login", user);
+		User result = session.selectOne("UseUser.selectUser", user);
 		log.debug(result);
 		return result;
 	}
@@ -90,13 +76,7 @@ public class UserDaoImpl implements UserDao {
 		log.debug("회원정보수정 dao");
 		return session.update("UseUser.editUser", user);
 	}
-	//정보 수정을 위해 불러오는 정보
-	@Override
-	public User selectUser(User user) {
-		
-		return session.selectOne("UseUser.selectUser", user);
-	}
-
+	
 	//회원탈퇴
 	@Override
 	public int deleteUser() {
