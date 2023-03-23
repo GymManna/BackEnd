@@ -88,12 +88,29 @@ public class UserController {
 	//로그인 - 카카오
 	@GetMapping(value = "/loginkakao", produces = "application/json; charset=UTF-8")
 	public User loginKakao(Model model, String userId) {
-		log.debug("login");
+		log.debug("loginKakao");
 		User user = new User();
 		user.setUserId(userId);
 		user.setUserRoute(1);
 //		log.debug(user);
 		User result = userService.loginUserKakao(user);
+		
+		model.addAttribute("user", user);
+		
+		if(result == null ) {
+			log.debug("로그인 실패");
+		}
+		return result;
+	}
+	
+	//로그인 - 카카오
+	@GetMapping(value = "/userinfo", produces = "application/json; charset=UTF-8")
+	public User getUserInfo(Model model, String userId) {
+		log.debug("getUserInfo");
+		User user = new User();
+		user.setUserId(userId);
+//		log.debug(user);
+		User result = userService.selectUser(user);
 		
 		model.addAttribute("user", user);
 		

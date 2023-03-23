@@ -17,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -260,9 +261,10 @@ public class ArticleController {
 //	
 //    }
 
-//	// 만나 상세페이지 큐알코드(웹 상에서 큐알코드로 보는 방법)
+	// 만나 상세페이지 큐알코드(웹 상에서 큐알코드로 보는 방법)
 //    @RequestMapping(value="qrCode" , produces = "application/json; charset=UTF-8")
 //    public ResponseEntity<byte[]> makeqr(HttpServletRequest request, HttpSession session,@RequestParam Long articleGnum) throws WriterException, IOException{
+//    	log.debug("@@ qrcode");
 //    	
 //    	// 현재 서비스가 돌아가고 있는 서블릿 경로의 resources 폴더 찾기
 //    	String root = request.getSession().getServletContext().getRealPath("resources");
@@ -312,11 +314,12 @@ public class ArticleController {
 //    }
 
 	// 만나 상세페이지 큐알코드(파일이름으로 넘겨주기)
-
 	@RequestMapping(value = "qrCode", produces = "application/json; charset=UTF-8")
 	public String makeqr(HttpServletRequest request, HttpSession session, @RequestParam Long articleGnum)
 			throws WriterException, IOException {
 
+		log.debug("@@ qrcode");
+		
 		// 현재 서비스가 돌아가고 있는 서블릿 경로의 resources 폴더 찾기
 		String root = request.getSession().getServletContext().getRealPath("resources");
 
@@ -361,6 +364,6 @@ public class ArticleController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.IMAGE_PNG);
 
-		return fileName + "png";
+		return fileName + ".png";
 	}
 }

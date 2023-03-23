@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	//로그인
 	@Override
     public User loginUser(User user) {
-		log.debug("서비스");
+		log.debug("loginUser");
 
 		//dao일시키기
 		User result = userDao.findByUsername(user);
@@ -45,20 +45,36 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	//로그인
+	//로그인 - 카카오
 	@Override
     public User loginUserKakao(User user) {
-		log.debug("서비스");
+		log.debug("loginUserKakao");
 
 		//dao일시키기
 		User result = userDao.findByUsernameKakao(user);
 //		log.debug(result);
 		//if문 아이디 비번 틀렷을때
-		if(result != null && result.getUserPassword().equals(user.getUserPassword())) {
+		if(result != null && result.getUserPassword().equals("1")) {
 			log.debug("로그인 성공");
 			return result;
 		} else {
 			log.debug("아이디비번 틀림");
+			return null;
+		}
+	}
+
+	//로그인
+	@Override
+    public User selectUser(User user) {
+		log.debug("selectUser");
+		User result = userDao.findByUsername(user);
+//		log.debug(result);
+		//if문 아이디 비번 틀렷을때
+		if(result != null) {
+			log.debug("검색 성공");
+			return result;
+		} else {
+			log.debug("검색 실패");
 			return null;
 		}
 	}
@@ -140,20 +156,4 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteUser();
 	}
 
-
-	
-
-
-
-	
-	
 }
-	
-	
-
-	    
-
-
-	
-
-

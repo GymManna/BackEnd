@@ -10,10 +10,9 @@ public interface UserService {
 	//로그인
 	User loginUser(User user);
 	User loginUserKakao(User user);
+	User selectUser(User user);
 	
 	//회원가입
-	//User selectUser(User user);
-	
 	User createUser(User user);
 	User createUserKakao(User user);
 
