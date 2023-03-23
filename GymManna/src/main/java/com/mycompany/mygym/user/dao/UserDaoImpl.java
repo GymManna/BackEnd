@@ -74,14 +74,17 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int editUser(User user) {
 		log.debug("회원정보수정 dao");
-		return session.update("UseUser.editUser", user);
+		int result = session.update("UseUser.editUser", user);
+		return result;
 	}
 	
 	//회원탈퇴
 	@Override
-	public int deleteUser() {
+	public int deleteUser(User user) {
 		// TODO Auto-generated method stub
-		return session.delete("UseUser.withdraw");
+		log.debug("deleteUser()");
+		int result = session.delete("UseUser.withdraw", user);
+		return result;
 	}
 	
 

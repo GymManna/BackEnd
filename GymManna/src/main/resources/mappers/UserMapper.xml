@@ -45,7 +45,8 @@
 	<!-- 정보수정 -->
 	<update id="editUser" parameterType="com.mycompany.mygym.user.vo.User">
 		UPDATE user
-		SET user_nickname = #{userNickname}, user_phone = #{userPhone}
+		SET user_name = #{userName}, user_nickname = #{userNickname},
+			user_password = #{userPassword}, user_phone = #{userPhone}
 		WHERE user_id = #{userId} 
 	</update>
 

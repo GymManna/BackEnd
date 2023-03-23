@@ -142,18 +142,18 @@ public class UserServiceImpl implements UserService {
 
 	//회원정보 수정
 	@Override
-	public boolean editUser(User user) {
+	public int editUser(User user) {
 		log.debug("회원정보 수정 서비스");
-		User result = userDao.selectUser(user);
-		userDao.editUser(user);
-		return true;
+//		User result = userDao.selectUser(user);
+		int result = userDao.editUser(user);
+		return result;
 	}
 
 	//회원탈퇴
 	@Override
-	public int deleteUser() {
+	public int deleteUser(User user) {
 		
-		return userDao.deleteUser();
+		return userDao.deleteUser(user);
 	}
 
 }

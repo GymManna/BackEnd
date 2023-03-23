@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -121,12 +122,12 @@ public class UserController {
 	}
 	
 	//회원정보수정
-	@PostMapping(value = "/update")
-	public String updateHandler(User user, Model model) {
+	@PutMapping(value = "/update", produces="application/json; charset=UTF-8")
+	public int updateHandler(User user, Model model) {
 		log.debug("update컨트롤러");
 		
-		userService.editUser(user);
-		return null;
+		int result = userService.editUser(user);
+		return result;
 	}
 	
 	//전체회원 리스트 불러오기
@@ -140,9 +141,10 @@ public class UserController {
 	}
 	
 	//회원 탈퇴
-	@DeleteMapping(value = "/")
-	public void deleteHandler() {
-		userService.deleteUser();
+	@DeleteMapping(value = "/delete", produces="application/json; charset=UTF-8")
+	public int deleteHandler(User user, Model model) {
+		int result = userService.deleteUser(user);
+		return result;
 	}
 
 }

@@ -21,9 +21,9 @@ public interface UserService {
 	
 	//회원정보 수정
 	//User selectUser(); //수정하기위해서 불러오는것
-	boolean editUser(User user); //정보수정
+	int editUser(User user); //정보수정
 	
 	//회원탈퇴
-	int deleteUser();
+	int deleteUser(User user);
 
 }

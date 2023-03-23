@@ -28,5 +28,5 @@ public interface UserDao {
 	int editUser(User user); //정보수정
 	
 	//회원 탈퇴
-	int deleteUser();
+	int deleteUser(User user);
 }
