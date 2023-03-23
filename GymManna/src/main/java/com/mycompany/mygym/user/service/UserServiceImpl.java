@@ -27,6 +27,42 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 
+	//로그인
+	@Override
+    public User loginUser(User user) {
+		log.debug("서비스");
+
+		//dao일시키기
+		User result = userDao.findByUsername(user);
+//		log.debug(result);
+		//if문 아이디 비번 틀렷을때
+		if(result != null && result.getUserPassword().equals(user.getUserPassword())) {
+			log.debug("로그인 성공");
+			return result;
+		} else {
+			log.debug("아이디비번 틀림");
+			return null;
+		}
+	}
+
+	//로그인
+	@Override
+    public User loginUserKakao(User user) {
+		log.debug("서비스");
+
+		//dao일시키기
+		User result = userDao.findByUsernameKakao(user);
+//		log.debug(result);
+		//if문 아이디 비번 틀렷을때
+		if(result != null && result.getUserPassword().equals(user.getUserPassword())) {
+			log.debug("로그인 성공");
+			return result;
+		} else {
+			log.debug("아이디비번 틀림");
+			return null;
+		}
+	}
+
 	@Override
 	public User createUser(User user) {
 		log.debug("회원가입서비스");
@@ -81,24 +117,6 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-	//로그인
-	@Override
-    public User loginUser(User user) {
-		log.debug("서비스");
-
-		//dao일시키기
-		User result = userDao.findByUsername(user);
-//		log.debug(result);
-		//if문 아이디 비번 틀렷을때
-		if(result != null && result.getUserPassword().equals(user.getUserPassword())) {
-			log.debug("로그인 성공");
-			return result;
-		} else {
-			log.debug("아이디비번 틀림");
-			return null;
-		}
-	}
-
 	//전체회원리스트
 	@Override
 	public List<User> allUser() {

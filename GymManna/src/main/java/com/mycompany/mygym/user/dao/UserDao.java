@@ -18,6 +18,7 @@ public interface UserDao {
 	
 	//로그인
 	User findByUsername(User user);
+	User findByUsernameKakao(User user);
 
 	//전체회원리스트 불러오기
 	List<User> getAllUser();
