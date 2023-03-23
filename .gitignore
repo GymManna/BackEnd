@@ -154,3 +154,4 @@ database.properties
 log4j2.xml
 pom.properties
 target/
+.classpath

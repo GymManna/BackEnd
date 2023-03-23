@@ -41,7 +41,11 @@ public class ArticlePhotoDaoImpl implements ArticlePhotoDao{
 
 	@Override // [Read] 상세
 	public List<ArticlePhoto> getPostById(long articlePnum) {
-		log.debug("articlePnum");
 		return session.selectList("com.mycompany.mygym.article.photo.selectArticleById", articlePnum);
+	}
+
+	@Override // [Delete]
+	public int deletePost(long articlePnum) {
+		return session.delete("com.mycompany.mygym.article.photo.deleteArticle", articlePnum);
 	}
 }

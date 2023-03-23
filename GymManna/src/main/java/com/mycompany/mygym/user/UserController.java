@@ -44,36 +44,52 @@ public class UserController {
 //	}
 	
 	//회원가입
-	@PostMapping(value = "/register")
-	public String registerHandler(@ModelAttribute User user, Model model) {
-		
-		
-//		boolean use = 
-				userService.createUser(user);
+	@PostMapping(value = "/register", produces = "application/json; charset=UTF-8")
+	public User register(@ModelAttribute User user, Model model) {
 		log.debug("회원가입컨트롤러");
+		User result = userService.createUser(user);
+		
 //		model.addAttribute("message", "회원가입이 완료되었습니다.");
 		
-		return "user/userLogin";
+		return result;
+	}
+	
+	//회원가입 - 카카오
+	@PostMapping(value = "/registeruserkakao", produces = "application/json; charset=UTF-8")
+	public User registerUserKakao(@ModelAttribute User user, Model model) {
+		log.debug("회원가입컨트롤러");
+		user.setUserPassword("1");
+		user.setUserPhone("010-9999-9998");
+		User result = userService.createUserKakao(user);
+		
+//		model.addAttribute("message", "회원가입이 완료되었습니다.");
+		
+		return result;
 	}
 		
 	//로그인
-	@GetMapping(value = "/login")
-	public String loginHandler(Model model, String userId, String userPw) {
-		log.debug("컨트롤러");
+	@GetMapping(value = "/login", produces = "application/json; charset=UTF-8")
+	public User login(Model model, String userId, String userPw) {
+		log.debug("login");
 		User user = new User();
 		user.setUserId(userId);
 		user.setUserPassword(userPw);
-		log.debug(user);
+//		log.debug(user);
 		User result = userService.loginUser(user);
 		
 		model.addAttribute("user", user);
 		
+//		if(result == null ) {
+//			log.debug("서비스 실패");
+//			return "user/loginFail";
+//		} else {
+//			return "user/loginSuccess";
+//		}
 		if(result == null ) {
 			log.debug("서비스 실패");
-			return "user/loginFail";
-		} else {
-			return "user/loginSuccess";
 		}
+		
+		return result;
 	}
 	
 	//회원정보수정
