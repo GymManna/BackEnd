@@ -142,7 +142,11 @@ public class ArticleController {
 		gathering.setCategoryType(category);
 		gathering.setUserId(userId);
 		gathering.setCenterName(centerName);
+		
+		long centerNum = 2;
+		gathering.setCenterNum(centerNum);
 
+		log.debug(gathering);
 		List<Gathering> result = service.createArticle(gathering);
 
 		log.debug(result);

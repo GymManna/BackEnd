@@ -59,9 +59,7 @@
    
    <insert id="createArticle" parameterType="com.mycompany.mygym.article.gathering.vo.Gathering">
    		INSERT INTO article_gathering (article_gtitle, article_gcontent,user_id,category_type,center_num)
-   		SELECT #{articleGtitle},#{articleGcontent},#{userId},#{categoryType},center_num
-   		FROM centertbl
-   		WHERE center_name = #{centerName}
+  		VALUES (#{articleGtitle}, #{articleGcontent}, #{userId}, #{categoryType}, #{centerNum});
    </insert>
    
    <update id="updateInfo" parameterType="com.mycompany.mygym.article.gathering.vo.Gathering">
